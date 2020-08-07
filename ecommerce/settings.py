@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['prj-django-ecomm.herokuapp.com', '127.0.0.1',]
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 
-
 # Application definition
 
 INSTALLED_APPS = [
