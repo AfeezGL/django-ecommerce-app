@@ -27,7 +27,7 @@ def add_to_cart(request):
 	device_id = data["deviceId"]
 	product = Product.objects.get(id = product_id)
 	try:
-		customer, created = Customer.objects.get_or_create(user = request.user)
+		customer = Customer.objects.get(user = request.user)
 	except:
 		customer, created = Customer.objects.get_or_create(device_id = device_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
@@ -40,7 +40,7 @@ def add_to_cart(request):
 def CartView(request):
 	template = "cart.html"
 	try:
-		customer, created = Customer.objects.get_or_create(user = request.user)
+		customer = Customer.objects.get(user = request.user)
 	except:
 		device_id = request.COOKIES["deviceId"]
 		customer, created = Customer.objects.get_or_create(device_id = device_id)
