@@ -21,7 +21,7 @@
     var firstname = "{{ order.customer.user.first_name }}"
     var lastname = "{{ order.customer.user.last_name }}"
     var email = "{{ order.customer.user.email }}"
-    var reference = "{{ order.reference }}"
+    var reference = "{{ order.transaction_id }}"
     var paymentInitUrl = "{% url 'payment_init' %}"
 </script>
 <script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>
