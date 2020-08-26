@@ -12,7 +12,7 @@ PAYSTACK_API_KEY = os.environ.get('PAYSTACK_API_KEY')
 def CheckoutView(request):
 	template = "checkout.html"
 	try:
-		customer = Customer.objects.get(user = request.user)
+		customer, created = Customer.objects.get_or_create(user = request.user)
 	except:
 		customer,created = Customer.objects.get_or_create(device_id = device_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
