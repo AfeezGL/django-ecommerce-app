@@ -27,7 +27,7 @@ payButton.addEventListener('click', function (e) {
 		body: JSON.stringify({
 			"email": email,
 			"amount": amount,
-			"callback_url": "http://127.0.0.1:8000/checkout/verify/",
+			"callback_url": "https://prj-django-ecomm.herokuapp.com/checkout/verify/",
 			"reference": reference,
 			"firs_tname": firstname,
 			"last_name": lastname,
