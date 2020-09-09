@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
 from autoslug import AutoSlugField
 from django.contrib.auth.models import User
-from account.models import Customer
+from account.models import *
 
 # Create your models here.
 
