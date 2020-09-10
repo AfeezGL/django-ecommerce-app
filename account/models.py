@@ -38,6 +38,6 @@ class DeliveryAddress(models.Model):
     postal_code = models.PositiveIntegerField(null = True)
     phone_number = models.PositiveIntegerField(null = True)
 
-class DefaultAddress(models.model):
+class DefaultAddress(models.Model):
     customer = models.ForeignKey(Customer, null = True, on_delete = models.SET_NULL)
     DeliveryAddress = models.ForeignKey(DeliveryAddress, null = True, on_delete = models.SET_NULL)
