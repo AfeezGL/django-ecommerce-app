@@ -25,7 +25,7 @@ class Customer(models.Model):
     		name = self.device_id
     	return str(name)
 
-class DeliveryAddress(models.model):
+class DeliveryAddress(models.Model):
     customer = models.ForeignKey(customer)
     first_name = models.CharField(max_length = 250, null = True)
     last_name = models.CharField(max_length = 250, null = True)
