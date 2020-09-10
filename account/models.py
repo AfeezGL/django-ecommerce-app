@@ -26,7 +26,7 @@ class Customer(models.Model):
     	return str(name)
 
 class DeliveryAddress(models.Model):
-    customer = models.ForeignKey(customer)
+    customer = models.ForeignKey(Customer, null = True, on_delete = models.SET_NUL)
     first_name = models.CharField(max_length = 250, null = True)
     last_name = models.CharField(max_length = 250, null = True)
     email = models.EmailField(max_length = 250, null = True, blank = True)
@@ -39,5 +39,5 @@ class DeliveryAddress(models.Model):
     phone_number = models.PositiveIntegerField(null = True)
 
 class DefaultAddress(models.model):
-    customer = models.ForeignKey(customer)
-    DeliveryAddress = models.ForeignKey(DeliveryAddress)
+    customer = models.ForeignKey(Customer, null = True, on_delete = models.SET_NULL)
+    DeliveryAddress = models.ForeignKey(DeliveryAddress, null = True, on_delete = models.SET_NUL)
