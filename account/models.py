@@ -26,7 +26,7 @@ class Customer(models.Model):
     	return str(name)
 
 class DeliveryAddress(models.Model):
-    customer = models.ForeignKey(Customer, null = True, on_delete = models.SET_NUL)
+    customer = models.ForeignKey(Customer, null = True, on_delete = models.SET_NULL)
     first_name = models.CharField(max_length = 250, null = True)
     last_name = models.CharField(max_length = 250, null = True)
     email = models.EmailField(max_length = 250, null = True, blank = True)
@@ -40,4 +40,4 @@ class DeliveryAddress(models.Model):
 
 class DefaultAddress(models.model):
     customer = models.ForeignKey(Customer, null = True, on_delete = models.SET_NULL)
-    DeliveryAddress = models.ForeignKey(DeliveryAddress, null = True, on_delete = models.SET_NUL)
+    DeliveryAddress = models.ForeignKey(DeliveryAddress, null = True, on_delete = models.SET_NULL)
