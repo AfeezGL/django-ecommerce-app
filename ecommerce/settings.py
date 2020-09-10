@@ -34,9 +34,9 @@ LOGOUT_REDIRECT_URL = 'index'
 # Application definition
 
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
     'product.apps.ProductConfig',
     'checkout.apps.CheckoutConfig',
-    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
