@@ -196,7 +196,6 @@ a p {
 }
 .cart-icon {
 	background-color: #e7746f;
-	background-image: url('https://prj-django-ecomm.s3-us-west-1.amazonaws.com/css/supermarket.svg');
 	background-size: 70%;
 	background-position: center;
 	background-repeat: no-repeat;
