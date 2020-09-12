@@ -1,4 +1,5 @@
 var addToCartBtn = document.getElementsByClassName('add-to-cart')
+var num = document.querySelector(".num")
 
 for (var i = 0; i < addToCartBtn.length; i++) {
 	addToCartBtn[i].addEventListener('click', function(){
@@ -21,7 +22,7 @@ for (var i = 0; i < addToCartBtn.length; i++) {
 			return res.json()
 		})
 		.then((data) => {
-			alert(data)
+			num.innerHTML = data
 		})
 	})
 }
@@ -35,3 +36,9 @@ hamburger.addEventListener('click', function (){
         menu.style.display = "flex"
     }
 })
+
+
+
+function refreshCart(){
+
+}

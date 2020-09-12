@@ -34,7 +34,10 @@ def add_to_cart(request):
 	cartitem, created = CartItem.objects.get_or_create(product = product, customer = customer, order = order)
 	cartitem.units = (cartitem.units + 1)
 	cartitem.save()
-	return JsonResponse("product added to cart", safe=False)
+	cartitems = order.cartitem_set.all()
+	num = len(cartitems)
+	print (num)
+	return JsonResponse(num, safe=False)
 
 #Cart View. Shows all cart items and total
 def CartView(request):

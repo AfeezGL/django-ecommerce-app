@@ -17,6 +17,12 @@ img {
 /*---------- header ------------*/
 header {
 	background: #272d39;
+	position: fixed;
+	width: 100%;
+	top: 0;
+}
+main {
+	margin-top: 70px;
 }
 .logo {
 	padding: 8px 0;
@@ -183,7 +189,27 @@ a p {
 	padding: 5px 10px;
 	cursor: pointer;
 }
-
+.cart-link{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+.cart-icon {
+	background-color: #e7746f;
+	background-image: url('supermarket.svg');
+	background-size: 70%;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	float: right;
+	padding-top: 15px;
+}
+.num {
+	text-align: center;
+	color: white;
+}
 /*-----------Dashboard------------*/
 .notifications {
 	display: flex;
