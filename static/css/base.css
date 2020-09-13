@@ -196,8 +196,8 @@ a p {
 }
 .cart-icon {
 	background-color: #e7746f;
-	background-size: 70%;
-	background-position: center;
+	background-size: 80%;
+	background-position: left center;
 	background-repeat: no-repeat;
 	width: 70px;
 	height: 70px;

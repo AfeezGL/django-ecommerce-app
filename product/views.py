@@ -51,3 +51,18 @@ def CartView(request):
 	cartitems = order.cartitem_set.all()
 	return render(request, template, {"order":order,
 	"cartitems":cartitems})
+
+def RefreshNum(request):
+	data = json.loads(request.body)
+	device_id = data["deviceId"]
+	try:
+		customer = Customer.objects.get(user = request.user)
+	except:
+		customer, created = Customer.objects.get_or_create(device_id = device_id)
+	order, created = Order.objects.get_or_create(customer = customer, completed = False)
+	cartitems = order.cartitem_set.all()
+	num = 0
+	for cartitem in cartitems:
+		num += cartitem.units
+	print (num)
+	return JsonResponse(num, safe=False)
