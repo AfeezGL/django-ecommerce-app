@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
 	<link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="refreshCart()">
 	<header>
     	<div class="logo">
     		<a href="{% url 'index' %}"><h1>Homepage</h1></a>
@@ -36,7 +36,7 @@
 				<a href="{% url 'cart' %}">
 					<div class="cart-icon" style="background-image: url('{% static 'css/supermarket.svg' %}');">
 						<div class="carttext">
-							<h2 class="num">.</h2>
+							<h2 class="num"></h2>
 						</div>
 					</div>
 				</a>

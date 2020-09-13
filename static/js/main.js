@@ -5,6 +5,7 @@ var	hamburger = document.getElementById('hamburger')
 var menu = document.getElementById('menu')
 var body = document.querySelector('.container')
 
+
 // Menu toggle
 hamburger.addEventListener('click', function (){
     if (menu.style.display == "flex"){
@@ -35,6 +36,8 @@ for (var i = 0; i < addToCartBtn.length; i++) {
 			return res.json()
 		})
 		.then(refreshCart, (data) => {alert(data)})
+		.then(green)
+		.then(setTimeout(grey,1500))
 	})
 }
 
