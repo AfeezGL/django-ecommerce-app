@@ -22,7 +22,7 @@ header {
 	top: 0;
 }
 main {
-	margin-top: 70px;
+	margin-top: 54px;
 }
 .logo {
 	padding: 8px 0;
@@ -86,7 +86,7 @@ header ul a p {
 .container{
 	margin: 0 auto;
 	max-width: 1000px;
-	padding: 0 15px;
+	padding: 1rem;
 	background-color: #f4f4f4;
 }
 .product-list {
@@ -244,7 +244,7 @@ a p {
 }
 @media(min-width: 580px){
 	.container {
-		padding: 0;
+		padding: 1rem 0 0 0;
 	}
 	.product-list {
 		grid-gap: 1rem;
