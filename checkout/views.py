@@ -16,8 +16,8 @@ class DeliveryInfo(UpdateView):
 		try:
 			customer = Customer.objects.get(user = request.user)
 		except:
-			device_id = self.request.COOKIES["deviceId"]
-			customer, created = Customer.objects.get_or_create(device_id = device_id)
+			session_id = self.request.COOKIES["sessionid"]
+			customer, created = Customer.objects.get_or_create(session_id = session_id)
 		return customer
 	fields = ['first_name', 'last_name', 'email', 'address_line_1', 'address_line_2', 'city', 'state', 'country', 'postal_code', 'phone_number']
 	def get_success_url(self):
@@ -29,8 +29,8 @@ def CheckoutView(request):
 	try:
 		customer= Customer.objects.get(user = request.user)
 	except:
-		device_id = request.COOKIES["deviceId"]
-		customer, created = Customer.objects.get_or_create(device_id = device_id)
+		session_id = request.COOKIES["sessionid"]
+		customer, created = Customer.objects.get_or_create(session_id = session_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	string = str(datetime.datetime.now().timestamp())
 	order.transaction_id = string
