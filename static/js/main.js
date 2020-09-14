@@ -4,6 +4,9 @@ var num = document.querySelector(".num")
 var	hamburger = document.getElementById('hamburger')
 var menu = document.getElementById('menu')
 var body = document.querySelector('.container')
+var increaseBtn = document.querySelectorAll(".increase")
+var reduceBtn = document.querySelectorAll(".reduce")
+var total = document.querySelector(".total")
 
 
 // Menu toggle
@@ -18,7 +21,7 @@ hamburger.addEventListener('click', function (){
 // Add to cart function
 for (var i = 0; i < addToCartBtn.length; i++) {
 	addToCartBtn[i].addEventListener('click', function(){
-		var productId = this.dataset.product
+		let productId = this.dataset.product
 		fetch(addToCartUrl, {
 			method: 'POST',
 			credentials: 'same-origin',
@@ -67,4 +70,60 @@ function green() {
 }
 function grey() {
 	body.style.background = "#f4f4f4"
+}
+
+// Increase units function
+for (var i = 0; i < increaseBtn.length; i++) {
+	increaseBtn[i].addEventListener('click', function(){
+		let productId = this.dataset.product
+		fetch(addToCartUrl, {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: {
+				"X-CSRFToken": csrfToken,
+				'Content-Type':'application/json',
+			},
+			body: JSON.stringify({
+				'productId': productId,
+			})
+		})
+		.then((res) => {
+			return res.json()
+		})
+		.then((data) => {
+			this.previousElementSibling.innerHTML = data.units
+			total.innerHTML = data.total
+		})
+		.then(refreshCart)
+	})
+}
+
+// reduce units function
+for (var i = 0; i < reduceBtn.length; i++) {
+	reduceBtn[i].addEventListener('click', function(){
+		let productId = this.dataset.product
+		fetch(reduceUrl, {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: {
+				"X-CSRFToken": csrfToken,
+				'Content-Type':'application/json',
+			},
+			body: JSON.stringify({
+				'productId': productId,
+			})
+		})
+		.then((res) => {
+			return res.json()
+		})
+		.then((data) => {
+			if (data.units >= 1) {
+				this.nextElementSibling.innerHTML = data.units
+			} else {
+				this.parentNode.parentNode.parentNode.style.display = "none"
+			};
+			total.innerHTML = data.total
+		})
+		.then(refreshCart)
+	})
 }

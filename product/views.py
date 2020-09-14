@@ -34,10 +34,14 @@ def add_to_cart(request):
 	cartitem, created = CartItem.objects.get_or_create(product = product, customer = customer, order = order)
 	cartitem.units = (cartitem.units + 1)
 	cartitem.save()
-	cartitems = order.cartitem_set.all()
-	num = len(cartitems)
-	print (num)
-	return JsonResponse(num, safe=False)
+	units = cartitem.units
+	total = order.total
+	res = {
+		"total":total,
+		"units":units
+	}
+	print (res)
+	return JsonResponse(res, safe=False)
 
 #Cart View. Shows all cart items and total
 def CartView(request):
@@ -66,3 +70,30 @@ def RefreshNum(request):
 		num += cartitem.units
 	print (num)
 	return JsonResponse(num, safe=False)
+
+# Reduce cartitem units
+def reduce_units(request):
+	data = json.loads(request.body)
+	product_id = data["productId"]
+	session_id = request.COOKIES["sessionid"]
+	product = Product.objects.get(id = product_id)
+	try:
+		customer = Customer.objects.get(user = request.user)
+	except:
+		customer, created = Customer.objects.get_or_create(session_id = session_id)
+	order, created = Order.objects.get_or_create(customer = customer, completed = False)
+	cartitem, created = CartItem.objects.get_or_create(product = product, customer = customer, order = order)
+	cartitem.units = (cartitem.units - 1)
+	if cartitem.units >= 1:
+		cartitem.save()
+		units = cartitem.units
+	else:
+		cartitem.delete()
+		units = 0
+	total = order.total
+	res = {
+		"total":total,
+		"units":units
+	}
+	print (res)
+	return JsonResponse(res, safe=False)

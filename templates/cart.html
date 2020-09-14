@@ -4,19 +4,23 @@
 <div class="cart">
     <div class="card-container">
         {% for cartitem in cartitems %}
-        <a href="{% url 'details' cartitem.product.id %}">
-            <div class="card">
+        <div class="card">
+            <a href="{% url 'details' cartitem.product.id %}">
                 <img src="{{ cartitem.product.image.url }}" alt="" class="card-img">
-                <div class="card-text">
-                    <h3 class="name">{{ cartitem.product.name }}</h3>
-                    <p class="units">{{ cartitem.units }} units</p>
-                    <h4 class="price">₦{{ cartitem.get_price }}</h4>
+            </a>
+            <div class="card-text">
+                <h3 class="name">{{ cartitem.product.name }}</h3>
+                <div class="units">
+                    <button class="reduce" data-product = '{{ cartitem.product.id }}'>-</button>
+                    <span>{{ cartitem.units }}</span> units
+                    <button class="increase" data-product = '{{ cartitem.product.id }}'>+</button>
                 </div>
+                <h4 class="price">₦{{ cartitem.get_price }}</h4>
             </div>
-        </a>
+        </div>
         {% endfor %}
     </div>
-    <h3>Total = <span>{{ order.total }}</span></h3>
+    <h3>Total = <span class="total">{{ order.total }}</span></h3>
     <a href="{% url 'delivery_info' %}">
         <button class = 'proceed-btn'>Proceed to checkout</button>
     </a>
