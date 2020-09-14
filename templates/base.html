@@ -3,15 +3,14 @@
 <head>
     {% load static %}
 	<meta charset="UTF-8">
-	<title>Habby Fabrics</title>
+	<title>Fabric Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
-	<link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
 </head>
 <body onload="refreshCart()">
 	<header>
     	<div class="logo">
-    		<a href="{% url 'index' %}"><h1>Homepage</h1></a>
+    		<a href="{% url 'index' %}"><h1>Fabric Shop</h1></a>
     	</div>
 		<ul id="menu">
 			{% if user.is_authenticated %}
@@ -60,20 +59,6 @@
 		    }
 		    return cookieValue;
 		}
-		//uuid generator
-		function uuidv4() {
-			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-				var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-				return v.toString(16);
-			});
-		}
-
-		let deviceId = getCookie('deviceId')
-
-		if (deviceId == null || deviceId == undefined){
-			deviceId = uuidv4()
-		}
-		document.cookie = 'deviceId=' + deviceId + ";domain=;path=/"
 
 		var user = '{{ request.user }}'
 		var csrfToken = '{{ csrf_token }}'

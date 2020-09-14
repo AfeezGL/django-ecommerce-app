@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Customer(models.Model):
     user = models.OneToOneField(User, null = True, blank = True, on_delete=models.SET_NULL)
-    device_id = models.CharField(max_length = 200, null = True, blank = True)
+    session_id = models.CharField(max_length = 300, null = True, blank = True)
     profile_picture = models.ImageField(null=True)
     first_name = models.CharField(max_length = 250, null = True)
     last_name = models.CharField(max_length = 250, null = True)
@@ -22,7 +22,7 @@ class Customer(models.Model):
     	if self.user:
     		name = self.user.username
     	else:
-    		name = self.device_id
+    		name = self.session_id
     	return str(name)
 
 class DeliveryAddress(models.Model):

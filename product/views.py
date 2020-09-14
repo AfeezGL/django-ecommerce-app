@@ -24,12 +24,12 @@ class ProductDetailView(DetailView):
 def add_to_cart(request):
 	data = json.loads(request.body)
 	product_id = data["productId"]
-	device_id = data["deviceId"]
+	session_id = request.COOKIES["sessionid"]
 	product = Product.objects.get(id = product_id)
 	try:
 		customer = Customer.objects.get(user = request.user)
 	except:
-		customer, created = Customer.objects.get_or_create(device_id = device_id)
+		customer, created = Customer.objects.get_or_create(session_id = session_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	cartitem, created = CartItem.objects.get_or_create(product = product, customer = customer, order = order)
 	cartitem.units = (cartitem.units + 1)
@@ -45,8 +45,8 @@ def CartView(request):
 	try:
 		customer = Customer.objects.get(user = request.user)
 	except:
-		device_id = request.COOKIES["deviceId"]
-		customer, created = Customer.objects.get_or_create(device_id = device_id)
+		session_id = request.COOKIES["sessionid"]
+		customer, created = Customer.objects.get_or_create(session_id = session_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	cartitems = order.cartitem_set.all()
 	return render(request, template, {"order":order,
@@ -54,11 +54,11 @@ def CartView(request):
 
 def RefreshNum(request):
 	data = json.loads(request.body)
-	device_id = data["deviceId"]
+	session_id = request.COOKIES["sessionid"]
 	try:
 		customer = Customer.objects.get(user = request.user)
 	except:
-		customer, created = Customer.objects.get_or_create(device_id = device_id)
+		customer, created = Customer.objects.get_or_create(session_id = session_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	cartitems = order.cartitem_set.all()
 	num = 0

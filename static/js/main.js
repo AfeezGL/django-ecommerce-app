@@ -28,8 +28,6 @@ for (var i = 0; i < addToCartBtn.length; i++) {
 			},
 			body: JSON.stringify({
 				'productId': productId,
-				'user': user,
-				'deviceId': deviceId,
 			})
 		})
 		.then((res) => {
@@ -52,7 +50,7 @@ function refreshCart(){
 			'Content-Type':'application/json',
 		},
 		body: JSON.stringify({
-			'deviceId': deviceId,
+			'user': user,
 		})
 	})
 	.then((res) => {
