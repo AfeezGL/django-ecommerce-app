@@ -7,9 +7,11 @@
         <a href="{% url 'details' cartitem.product.id %}">
             <div class="card">
                 <img src="{{ cartitem.product.image.url }}" alt="" class="card-img">
-                <h3 class="name">{{ cartitem.product.name }}</h3>
-                <p class="units">{{ cartitem.units }} units</p>
-                <h4 class="price">₦{{ cartitem.get_price }}</h4>
+                <div class="card-text">
+                    <h3 class="name">{{ cartitem.product.name }}</h3>
+                    <p class="units">{{ cartitem.units }} units</p>
+                    <h4 class="price">₦{{ cartitem.get_price }}</h4>
+                </div>
             </div>
         </a>
         {% endfor %}

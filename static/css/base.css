@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 * {
 	box-sizing: border-box;
 	text-decoration: none;
@@ -9,6 +9,7 @@ body {
 	width: 100%;
 	margin: 0;
 	background: white;
+	line-height: 2;
 }
 img {
 	width: 100%;
@@ -26,7 +27,7 @@ main {
 	margin-top: 54px;
 }
 .logo {
-	padding: 8px 0;
+	padding: 0;
 	margin-left: 20px;
 	max-width: 500px;
 }
@@ -97,11 +98,8 @@ header ul a p {
 a p {
 	text-decoration: none;
 	color: black;
-	font-weight: 500;
+	font-weight: 300;
 	padding: 0 1rem;
-}
-.details {
-	padding: 10px;
 }
 .btn {
 	display: block;
@@ -123,6 +121,15 @@ a p {
 .add-to-cart:hover {
 	background-color: #272d39;
 }
+
+
+/*--------- Details Page ---------*/
+.details {
+	padding: 10px;
+	/*--- media queries---*/
+}
+
+
 /*--------- Cart Page ------------*/
 .cart {
 	padding: 10px;
@@ -130,10 +137,7 @@ a p {
 .card {
 	display: grid;
 	border: 1px solid #dee0e3;
-	grid-template-areas: 
-	"img img name name name"
-	"img img units units units"
-	"img img price price price";
+	grid-template-columns: 1fr 1fr;
 	max-height: 190px;
 	padding: 5px;
 }
@@ -141,17 +145,11 @@ a p {
 	max-width: 150px;
 	max-height: 150px;
 	object-fit: cover;
-	grid-area: img;
 }
 .name {
-	grid-area: name;
 	color: black;
 }
-.units {
-	grid-area: units;
-}
 .price {
-	grid-area: price;
 	color: black;
 }
 .proceed-btn {
@@ -210,7 +208,10 @@ a p {
 	text-align: center;
 	color: white;
 }
+
+
 /*-----------Dashboard------------*/
+
 .notifications {
 	display: flex;
 	flex-direction: column;
@@ -257,5 +258,28 @@ a p {
 	.product-image img {
 		height: 210px;
 		width: auto;
+	}
+
+
+	/*--------- Details Page ---------*/
+
+	.detail-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1.5rem;
+	}
+	.purchase {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+	}
+	.purchase p {
+		font-weight: 400;
+	}
+	.details-price {
+		margin-bottom: .5rem;
+	}
+	.product-description {
+		font-weight: 300;
 	}
 }

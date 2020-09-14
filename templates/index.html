@@ -4,10 +4,10 @@
 <div class="product-list">
     {% for product in object_list %}
     <div class="product-list-item">
-        <div class="product-image">
-            <img src="{{ product.image.url }}" alt="">
-        </div>
         <a href="{% url 'details' product.id %}">
+            <div class="product-image">
+                <img src="{{ product.image.url }}" alt="">
+            </div>
             <p class="product-name">{{ product.name }}</p>
             <p class="produc-price">₦<span>{{ product.price }}</span>.00</p>
         </a>
