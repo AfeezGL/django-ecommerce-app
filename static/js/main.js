@@ -31,6 +31,7 @@ for (var i = 0; i < addToCartBtn.length; i++) {
 			},
 			body: JSON.stringify({
 				'productId': productId,
+				'deviceId': deviceId,
 			})
 		})
 		.then((res) => {
@@ -53,7 +54,7 @@ function refreshCart(){
 			'Content-Type':'application/json',
 		},
 		body: JSON.stringify({
-			'user': user,
+			'deviceId': deviceId,
 		})
 	})
 	.then((res) => {
@@ -85,6 +86,7 @@ for (var i = 0; i < increaseBtn.length; i++) {
 			},
 			body: JSON.stringify({
 				'productId': productId,
+				'deviceId': deviceId,
 			})
 		})
 		.then((res) => {
@@ -111,6 +113,7 @@ for (var i = 0; i < reduceBtn.length; i++) {
 			},
 			body: JSON.stringify({
 				'productId': productId,
+				'deviceId': deviceId,
 			})
 		})
 		.then((res) => {

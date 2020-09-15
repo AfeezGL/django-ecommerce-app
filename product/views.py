@@ -24,12 +24,12 @@ class ProductDetailView(DetailView):
 def add_to_cart(request):
 	data = json.loads(request.body)
 	product_id = data["productId"]
-	session_id = request.COOKIES["sessionid"]
+	device_id = data["deviceId"]
 	product = Product.objects.get(id = product_id)
 	try:
 		customer = Customer.objects.get(user = request.user)
 	except:
-		customer, created = Customer.objects.get_or_create(session_id = session_id)
+		customer, created = Customer.objects.get_or_create(device_id = device_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	cartitem, created = CartItem.objects.get_or_create(product = product, customer = customer, order = order)
 	cartitem.units = (cartitem.units + 1)
@@ -46,11 +46,12 @@ def add_to_cart(request):
 #Cart View. Shows all cart items and total
 def CartView(request):
 	template = "cart.html"
+	print(dir(request.session))
 	try:
 		customer = Customer.objects.get(user = request.user)
 	except:
-		session_id = request.COOKIES["sessionid"]
-		customer, created = Customer.objects.get_or_create(session_id = session_id)
+		device_id = request.COOKIES["deviceId"]
+		customer, created = Customer.objects.get_or_create(device_id = device_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	cartitems = order.cartitem_set.all()
 	return render(request, template, {"order":order,
@@ -58,11 +59,11 @@ def CartView(request):
 
 def RefreshNum(request):
 	data = json.loads(request.body)
-	session_id = request.COOKIES["sessionid"]
+	device_id = data["deviceId"]
 	try:
 		customer = Customer.objects.get(user = request.user)
 	except:
-		customer, created = Customer.objects.get_or_create(session_id = session_id)
+		customer, created = Customer.objects.get_or_create(device_id = device_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	cartitems = order.cartitem_set.all()
 	num = 0
@@ -75,12 +76,12 @@ def RefreshNum(request):
 def reduce_units(request):
 	data = json.loads(request.body)
 	product_id = data["productId"]
-	session_id = request.COOKIES["sessionid"]
+	device_id = data["deviceId"]
 	product = Product.objects.get(id = product_id)
 	try:
 		customer = Customer.objects.get(user = request.user)
 	except:
-		customer, created = Customer.objects.get_or_create(session_id = session_id)
+		customer, created = Customer.objects.get_or_create(device_id = device_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	cartitem, created = CartItem.objects.get_or_create(product = product, customer = customer, order = order)
 	cartitem.units = (cartitem.units - 1)
