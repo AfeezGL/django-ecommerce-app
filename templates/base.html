@@ -14,18 +14,12 @@
     	</div>
 		<ul id="menu">
 			{% if user.is_authenticated %}
-			<li><a href="{% url 'logout' %}" class="links"><p>Logout</p></a></li>
+			<a href="{% url 'logout' %}" class="links"><p>Logout</p></a>
 			{% else %}
-			<li>
-				<a href="{% url 'login' %}" class="links"><p>Login</p></a>
-			</li>
-			<li>
-				<a href="{% url 'signup' %}" class="links"><p>Sign up</p></a>
-			</li>
+			<a href="{% url 'login' %}" class="links"><p>Login</p></a>
+			<a href="{% url 'signup' %}" class="links"><p>Sign up</p></a>
 			{% endif %}
-			<li>
-				<a href="{% url 'dashboard-index' %}" class="links"><p>Dashboard</p></a>
-			</li>
+			<a href="{% url 'dashboard-index' %}" class="links"><p>Dashboard</p></a>
 		</ul>
 		<div class="hamburger" id="hamburger">
 		    <span class="line"></span>

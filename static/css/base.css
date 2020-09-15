@@ -43,7 +43,7 @@ main {
 	right: 0;
     width: 53px;
     border: 1px solid black;
-    padding: 11px 5px;
+    padding: 15px 5px;
     transition: border 0.4s;
     background: black;
     align-items: center;
@@ -85,6 +85,9 @@ header ul a p {
 	padding-bottom: 10px;
 }
 /*------------ Homepage --------------*/
+.main-container {
+	min-height: 95vh;
+}
 .container{
 	margin: 0 auto;
 	max-width: 1000px;
@@ -211,6 +214,9 @@ a p {
 	padding: 5px 10px;
 	cursor: pointer;
 }
+
+/*------Cart Icon------*/
+
 .cart-link{
 	position: fixed;
 	bottom: 0;
@@ -225,7 +231,7 @@ a p {
 	height: 70px;
 	border-radius: 50%;
 	float: right;
-	padding-top: 15px;
+	padding-top: 7px;
 }
 .num {
 	text-align: center;
