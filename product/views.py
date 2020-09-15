@@ -5,6 +5,7 @@ from account.models import Customer
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 import json
+import uuid
 
 # Create your views here.
 class IndexView(ListView):
@@ -40,20 +41,23 @@ def add_to_cart(request):
 		"total":total,
 		"units":units
 	}
-	print (res)
+	#print (res)
 	return JsonResponse(res, safe=False)
 
 #Cart View. Shows all cart items and total
 def CartView(request):
 	template = "cart.html"
-	print(dir(request.session))
 	try:
 		customer = Customer.objects.get(user = request.user)
 	except:
-		device_id = request.COOKIES["deviceId"]
+		try:
+			device_id = request.COOKIES["deviceId"]
+		except:
+			device_id = "empty"
 		customer, created = Customer.objects.get_or_create(device_id = device_id)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	cartitems = order.cartitem_set.all()
+	#print(device_id)
 	return render(request, template, {"order":order,
 	"cartitems":cartitems})
 
@@ -69,7 +73,7 @@ def RefreshNum(request):
 	num = 0
 	for cartitem in cartitems:
 		num += cartitem.units
-	print (num)
+	#print (num)
 	return JsonResponse(num, safe=False)
 
 # Reduce cartitem units
@@ -96,5 +100,5 @@ def reduce_units(request):
 		"total":total,
 		"units":units
 	}
-	print (res)
+	#print (res)
 	return JsonResponse(res, safe=False)
