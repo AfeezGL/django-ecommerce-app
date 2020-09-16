@@ -11,10 +11,10 @@ var total = document.querySelector(".total")
 
 // Menu toggle
 hamburger.addEventListener('click', function (){
-    if (menu.style.display == "flex"){
+    if (menu.style.display == "block"){
         menu.style.display = "none"
     }else{
-        menu.style.display = "flex"
+        menu.style.display = "block"
     }
 })
 

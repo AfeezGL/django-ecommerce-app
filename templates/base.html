@@ -9,18 +9,15 @@
 </head>
 <body onload="refreshCart()">
 	<header>
-    	<div class="logo">
-    		<a href="{% url 'index' %}"><h1>Fabric Shop</h1></a>
-    	</div>
-		<ul id="menu">
+    	<a href="{% url 'index' %}" class="logo"><h1>Fabric Shop</h1></a>
+		<div id="menu">
 			{% if user.is_authenticated %}
-			<a href="{% url 'logout' %}" class="links"><p>Logout</p></a>
+			<a href="{% url 'logout' %}" class="links">Logout</a>
 			{% else %}
-			<a href="{% url 'login' %}" class="links"><p>Login</p></a>
-			<a href="{% url 'signup' %}" class="links"><p>Sign up</p></a>
+			<a href="{% url 'login' %}" class="links">Login</a>
+			<a href="{% url 'signup' %}" class="links">Sign up</a>
 			{% endif %}
-			<a href="{% url 'dashboard-index' %}" class="links"><p>Dashboard</p></a>
-		</ul>
+		</div>
 		<div class="hamburger" id="hamburger">
 		    <span class="line"></span>
 		    <span class="line"></span>
