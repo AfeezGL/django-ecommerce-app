@@ -38,8 +38,6 @@ for (var i = 0; i < addToCartBtn.length; i++) {
 			return res.json()
 		})
 		.then(refreshCart, (data) => {alert(data)})
-		.then(green)
-		.then(setTimeout(grey,1500))
 	})
 }
 

@@ -107,13 +107,16 @@ a p {
 	margin: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	transition: background-color 0.6s;
+	transition: background-color 0.6s ease-in-out;
 
 }
-.add-to-cart:hover {
+.add-to-cart:hover,
+.add-to-cart:focus {
 	background-color: #272d39;
 }
-
+.add-to-cart:click {
+	background-color: #d4af37;
+}
 
 /*--------- Details Page ---------*/
 .details {
@@ -310,7 +313,7 @@ a p {
 
 	.detail-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 3fr 1fr;
 		grid-gap: 1.5rem;
 	}
 	.purchase {
@@ -322,6 +325,7 @@ a p {
 		font-weight: 400;
 	}
 	.details-price {
+		font-size: 2rem;
 		margin-bottom: .5rem;
 	}
 	.product-description {
