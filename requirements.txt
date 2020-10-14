@@ -16,3 +16,5 @@ urllib3==1.25.9
 whitenoise==5.2.0
 boto3==1.14.51
 django-storages==1.9.1
+django-phonenumber-field==5.0.0
+phonenumbers==8.12.11
