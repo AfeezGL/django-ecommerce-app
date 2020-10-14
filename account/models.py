@@ -1,6 +1,7 @@
 from django.db import models
 from autoslug import AutoSlugField
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 class Customer(models.Model):
     user = models.OneToOneField(User, null = True, blank = True, on_delete=models.SET_NULL)
@@ -15,7 +16,7 @@ class Customer(models.Model):
     state = models.CharField(max_length = 250, null = True)
     country = models.CharField(max_length = 250, default = "Nigeria")
     postal_code = models.PositiveIntegerField(null = True)
-    phone_number = models.PositiveIntegerField(null = True)
+    phone_number = PhoneNumberField()
     slug = AutoSlugField(populate_from='__str__')
 
     def __str__(self):

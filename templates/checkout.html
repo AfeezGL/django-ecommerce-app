@@ -18,9 +18,9 @@
 </div>
 <script  type="text/javascript" charset="utf-8">
     var amount = "{{ order.total }}" *100
-    var firstname = "{{ order.customer.user.first_name }}"
-    var lastname = "{{ order.customer.user.last_name }}"
-    var email = "{{ order.customer.user.email }}"
+    var firstname = "{{ order.customer.first_name }}"
+    var lastname = "{{ order.customer.last_name }}"
+    var email = "{{ order.customer.email }}"
     var reference = "{{ order.transaction_id }}"
     var paymentInitUrl = "{% url 'payment_init' %}"
 </script>
