@@ -12,16 +12,18 @@ PAYSTACK_API_KEY = os.environ.get('PAYSTACK_API_KEY')
 # Create your views here.
 class DeliveryInfo(UpdateView):
 	template_name = "forms.html"
+	
 	def get_object(self):
+		user = self.request.user
+		deviceId = self.request.COOKIES["deviceId"]
 		try:
-			customer = Customer.objects.get(user = request.user)
+			customer = Customer.objects.get(user = user)
 		except:
-			session_id = self.request.COOKIES["sessionid"]
-			customer, created = Customer.objects.get_or_create(session_id = session_id)
+			customer, created = Customer.objects.get_or_create(device_id = deviceId)
 		return customer
 	fields = ['first_name', 'last_name', 'email', 'address_line_1', 'address_line_2', 'city', 'state', 'country', 'postal_code', 'phone_number']
 	def get_success_url(self):
-		return reverse('checkout')
+		return reverse('checkout') 
 
 
 def CheckoutView(request):
@@ -29,8 +31,8 @@ def CheckoutView(request):
 	try:
 		customer= Customer.objects.get(user = request.user)
 	except:
-		session_id = request.COOKIES["sessionid"]
-		customer, created = Customer.objects.get_or_create(session_id = session_id)
+		deviceId = request.COOKIES["deviceId"]
+		customer, created = Customer.objects.get_or_create(device_id = deviceId)
 	order, created = Order.objects.get_or_create(customer = customer, completed = False)
 	string = str(datetime.datetime.now().timestamp())
 	order.transaction_id = string
