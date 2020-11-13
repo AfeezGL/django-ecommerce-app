@@ -9,4 +9,4 @@ A one stop shop for stylists and fashion designers to buy clothing materials. Re
 ### Deployment
 - Hosting - Heroku
 - Staticfiles + Images - AWS S3
-- url - [Fabric shop](prj-django-ecomm.herokuapp.com)
+- url - [Fabric shop](https://prj-django-ecomm.herokuapp.com)
