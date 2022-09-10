@@ -45,4 +45,3 @@ payButton.addEventListener('click', function (e) {
 	})
 })
 
-// sk_test_82a06115f060a7f760a4d7b9e56967ec954bea45
