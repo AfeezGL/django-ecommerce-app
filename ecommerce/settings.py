@@ -25,7 +25,7 @@ SECRET_KEY = 'y(4=mejt(z&@3$j8!i(6wmuqx@e43bw%f)9!48g2w!plz58&jc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['prj-django-ecomm.herokuapp.com', '127.0.0.1',]
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 # Auth redirects
 LOGIN_REDIRECT_URL = 'index'
