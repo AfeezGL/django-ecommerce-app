@@ -1,9 +1,15 @@
-from django.urls import path, re_path
-from . import views
+from django.urls import path
+
+from checkout.views import (
+    DeliveryInfo,
+    checkout_view,
+    initialize_payment_view,
+    verify_payment_view,
+)
 
 urlpatterns = [
-	path('', views.CheckoutView, name = "checkout" ),
-	path('delivery-info', views.DeliveryInfo.as_view(), name = "delivery_info"),
-    path('initialize/payment/', views.InitializePaymentView, name = "payment_init"),
-    path('verify/', views.VerifyPaymentView, name = "verify_payment"),
+    path("", checkout_view, name="checkout"),
+    path("delivery-info", DeliveryInfo.as_view(), name="delivery_info"),
+    path("initialize/payment/", initialize_payment_view, name="payment_init"),
+    path("verify/", verify_payment_view, name="verify_payment"),
 ]
